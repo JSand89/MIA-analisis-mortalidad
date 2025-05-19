@@ -6,11 +6,12 @@ import components.eda_tab as eda_tab
 import components.barra_violencia as barras_violencia
 import components.pie_baja_mortalidad as pie_baja_mortalidad
 import components.tabla_causas as tabla_causas
+import components.histograma_edades as histograma_edades
+import components.barras_sexo as barras_sexo
 
-# Importar los demás componentes...
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
-server = app.server  # Para despliegue
+server = app.server  
 
 app.layout = html.Div([
     html.H1("Mortalidad en Colombia - 2019"),
@@ -21,9 +22,8 @@ app.layout = html.Div([
         dcc.Tab(label='Violencia por Ciudad', children=[barras_violencia.layout]),
         dcc.Tab(label='Ciudades con menor mortalidad', children=[pie_baja_mortalidad.layout]),
         dcc.Tab(label='Causas de Muerte', children=[tabla_causas.layout]),
-
-
-        # Agregar las demás tabs con layouts
+        dcc.Tab(label='Muertes por Edad', children=[histograma_edades.layout]),
+        dcc.Tab(label='Muertes por Sexo y Departamento', children=[barras_sexo.layout]),
     ])
 ])
 

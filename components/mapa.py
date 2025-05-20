@@ -5,10 +5,6 @@ import plotly.express as px
 from dash import html, dcc
 from utils.data_loader import load_data, load_geojson_departamentos
 
-# Cargar datos y geojson
-df_muertes, df_divipola = load_data()
-geojson = load_geojson_departamentos()
-
 def preparar_datos_mapa(df, df_divipola):
     """
     Agrupa el total de muertes por departamento y une con nombres y códigos DANE.
@@ -26,29 +22,33 @@ def preparar_datos_mapa(df, df_divipola):
 
     return df_grouped
 
-# Preparar datos
-df_mapa = preparar_datos_mapa(df_muertes, df_divipola)
+def get_layout():
+    """
+    Carga los datos y retorna el layout con el mapa coroplético.
+    """
+    df_muertes, df_divipola = load_data()
+    geojson = load_geojson_departamentos()
 
-# Crear gráfico coroplético
-fig = px.choropleth(
-    df_mapa,
-    geojson=geojson,
-    locations='COD_DEP_STR',
-    color='TOTAL',
-    hover_name='DEPARTAMENTO',
-    featureidkey="properties.DPTO_CCDGO",  # ← asegurado desde tu geojson
-    projection="mercator",
-    color_continuous_scale="Reds"
-)
+    df_mapa = preparar_datos_mapa(df_muertes, df_divipola)
 
-fig.update_geos(fitbounds="locations", visible=False)
-fig.update_layout(
-    title="Total de muertes por departamento (2019)",
-    margin={"r": 0, "t": 50, "l": 0, "b": 0}
-)
+    fig = px.choropleth(
+        df_mapa,
+        geojson=geojson,
+        locations='COD_DEP_STR',
+        color='TOTAL',
+        hover_name='DEPARTAMENTO',
+        featureidkey="properties.DPTO_CCDGO",
+        projection="mercator",
+        color_continuous_scale="Reds"
+    )
 
-# Layout para insertar en la app
-layout = html.Div([
-    html.H3("Distribución de muertes por departamento"),
-    dcc.Graph(figure=fig)
-])
+    fig.update_geos(fitbounds="locations", visible=False)
+    fig.update_layout(
+        title="Total de muertes por departamento (2019)",
+        margin={"r": 0, "t": 50, "l": 0, "b": 0}
+    )
+
+    return html.Div([
+        html.H3("Distribución de muertes por departamento"),
+        dcc.Graph(figure=fig)
+    ])

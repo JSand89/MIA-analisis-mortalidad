@@ -9,9 +9,10 @@ import components.tabla_causas as tabla_causas
 import components.histograma_edades as histograma_edades
 import components.barras_sexo as barras_sexo
 
+# Importar los demás componentes...
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
-server = app.server  
+server = app.server  # Para despliegue
 
 app.layout = html.Div([
     html.H1("Mortalidad en Colombia - 2019"),

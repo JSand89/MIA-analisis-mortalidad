@@ -4,7 +4,7 @@
 **Javier Sánchez**  
 Asignatura: APLICACIONES I 
 Fecha: Mayo de 2025
-
+Link del 
 ---
 
 ## 📘 Introducción
@@ -104,3 +104,12 @@ La aplicación muestra de forma clara y estructurada varias tendencias relevante
 
 El uso de Dash y Python permitió desarrollar una aplicación interactiva, modular y visualmente clara, ideal para la exploración y análisis de datos reales. La estructura empleada permite escalar fácilmente la solución para otros años o temáticas, fomentando el uso de dashboards analíticos en el contexto educativo, institucional o profesional.
 
+---
+
+## 🌐 Acceso a la Aplicación
+
+Puedes explorar la aplicación desplegada en Render a través del siguiente enlace:
+
+👉 [**Acceder al Dashboard de Mortalidad 2019**](https://mia-analisis-mortalidad.onrender.com)
+
+> _Nota: La carga inicial puede tardar unos segundos mientras el servidor se reactiva._

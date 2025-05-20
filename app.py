@@ -28,7 +28,9 @@ app.layout = html.Div([
         dcc.Tab(label='Muertes por Sexo y Departamento', children=[barras_sexo.layout]),
     ])
 ])
+print("✅ Layout cargado correctamente")
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8050))
+    print(f"🚀 Iniciando app en puerto {port}...")
     app.run(host="0.0.0.0", port=port, debug=False)

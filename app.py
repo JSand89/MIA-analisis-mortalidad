@@ -39,27 +39,30 @@ app.layout = html.Div([
 
 # Callback para renderizar cada layout bajo demanda
 @app.callback(Output("content", "children"), Input("tabs", "value"))
-@app.callback(Output("content", "children"), Input("tabs", "value"))
 def render_tab(tab_name):
-    if tab_name == "inicio":
-        return inicio.get_layout()
-    elif tab_name == "mapa":
-        return mapa.get_layout()
-    elif tab_name == "lineas":
-        return lineas.get_layout()
-    elif tab_name == "eda_tab":
-        return eda_tab.get_layout()
-    elif tab_name == "barra_violencia":
-        return barras_violencia.get_layout()
-    elif tab_name == "pie_baja_mortalidad":
-        return pie_baja_mortalidad.get_layout()
-    elif tab_name == "tabla_causas":
-        return tabla_causas.get_layout()
-    elif tab_name == "histograma_edades":
-        return histograma_edades.get_layout()
-    elif tab_name == "barras_sexo":
-        return barras_sexo.get_layout()
-    return html.Div("Vista no encontrada.")
+    print(f"🌀 Tab seleccionada: {tab_name}")  # debug
+    try:
+        if tab_name == "inicio":
+            return inicio.get_layout()
+        elif tab_name == "mapa":
+            return mapa.get_layout()
+        elif tab_name == "lineas":
+            return lineas.get_layout()
+        elif tab_name == "eda_tab":
+            return eda_tab.get_layout()
+        elif tab_name == "barra_violencia":
+            return barras_violencia.get_layout()
+        elif tab_name == "pie_baja_mortalidad":
+            return pie_baja_mortalidad.get_layout()
+        elif tab_name == "tabla_causas":
+            return tabla_causas.get_layout()
+        elif tab_name == "histograma_edades":
+            return histograma_edades.get_layout()
+        elif tab_name == "barras_sexo":
+            return barras_sexo.get_layout()
+    except Exception as e:
+        print(f"❌ Error al cargar la pestaña {tab_name}: {e}")
+        return html.Div(f"Error al cargar la pestaña: {tab_name}")
 
 # Ejecución principal
 if __name__ == '__main__':
